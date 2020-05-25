@@ -44,29 +44,29 @@ public class client {
      */
     public static void main(String[] args) {
 
-//        // 1.获取核心容器对象
-//        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
-//        // 2.根据id获取bean对象
-//        IAccountService as = (IAccountService)ac.getBean("accountService");
-//        IAccountDao ad = (IAccountDao)ac.getBean("accountDao",IAccountDao.class);
-//        System.out.println(as);
-//        System.out.println(ad);
-//        as.saveAccount();
+        // 1.获取核心容器对象
+        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+        //ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+        // 2.根据id获取bean对象
+        //IAccountService as = (IAccountService)ac.getBean("accountService2");
+        //IAccountService as2 = (IAccountService)ac.getBean("accountService");
+        //IAccountDao ad = (IAccountDao)ac.getBean("accountDao",IAccountDao.class);
+       // System.out.println(as==as2);
+        //System.out.println(ad);
+        IAccountService as = (IAccountService)ac.getBean("accountService3");
+        as.saveAccount();
+        // 手动关闭容器
+        //ac.close();
 
-        // BeanFactory方式
-        Resource resource = new ClassPathResource("bean.xml");
-        BeanFactory factory = new DefaultListableBeanFactory();
-        BeanDefinitionReader bdr = new XmlBeanDefinitionReader((BeanDefinitionRegistry) factory);
-        bdr.loadBeanDefinitions(resource);
-        IAccountService as = (IAccountService) factory.getBean("accountService");
-        System.out.println(as);
-/**
- *  每次按同样的名称取bean对象，默认获得一个重新创建的bean对象
- *  多例：
- *      对象会被创建多次，执行效率没有单例对象高
- *  单例：
- *      对象只被创建一次，从而类中成员也就只被初始化一次
- */
+//        // BeanFactory方式
+//        Resource resource = new ClassPathResource("bean.xml");
+//        BeanFactory factory = new DefaultListableBeanFactory();
+//        BeanDefinitionReader bdr = new XmlBeanDefinitionReader((BeanDefinitionRegistry) factory);
+//        bdr.loadBeanDefinitions(resource);
+//        IAccountService as = (IAccountService) factory.getBean("accountService");
+//        System.out.println(as);
+
+
 //public class client {
 //    public static void main(String[] args) {
 //        //IAccountService as = new AccountServiceImpl();

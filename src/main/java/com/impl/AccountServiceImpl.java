@@ -7,15 +7,49 @@ import com.dao.IAccountDao;
 import com.factory.BeanFactory;
 
 import com.service.IAccountService;
+
+import java.util.Date;
+
 /*
 账户的业务层实现类
  */
 public class AccountServiceImpl implements IAccountService {
 
-    public AccountServiceImpl(){
+    private String name;
+    private Integer age;
+    private Date birthday;
+    // 如果是经常变化的数据，并不适合用这种注入方式
+    public AccountServiceImpl(String name,Integer age,Date birthday) {
         System.out.println("对象已创建");
+        this.name = name;
+        this.age = age;
+        this.birthday = birthday;
+       // System.out.println(this.name);
+        //System.out.println(this.age);
+        //System.out.println(this.birthday);
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public void init(){
+        System.out.println("对象初始化完成");
+    }
+    public void destroy(){
+        System.out.println("对象销毁了");
+    }
+
     private IAccountDao accountDao = new AccountDaoImpl();
+
     public void saveAccount() {
         accountDao.saveAccount();
     }
