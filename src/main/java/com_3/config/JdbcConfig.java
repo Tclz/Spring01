@@ -42,10 +42,19 @@ public class JdbcConfig {
     public DataSource createDataSource(){
         try{
             ComboPooledDataSource ds = new ComboPooledDataSource();
-            ds.setDriverClass("com.mysql.jdbc.Driver");
-            ds.setJdbcUrl("jdbc:mysql://localhost:3306/tclz");
-            ds.setUser("root");
-            ds.setPassword("1234");
+//            System.out.println(driver);
+//            System.out.println(url);
+//            System.out.println(username);
+//            System.out.println(password);
+
+            ds.setDriverClass(driver);
+            ds.setJdbcUrl(url);
+            ds.setUser(username);
+            ds.setPassword(password);
+//              ds.setDriverClass("com.mysql.jdbc.Driver");
+//              ds.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/tclz");
+//              ds.setUser("root");
+//              ds.setPassword("1234");
             return ds;
         }catch (Exception e){
             throw  new RuntimeException(e);
