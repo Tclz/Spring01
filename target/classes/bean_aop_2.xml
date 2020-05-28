@@ -14,6 +14,7 @@
 
     <!-- 配置AOP-->
     <aop:config>
+
         <!--配置切面-->
         <aop:aspect id="logAdvice" ref="logger">
             <!--配置前置通知  在切入点方法执行前执行-->
@@ -25,10 +26,19 @@
             <!--配置最终通知  无论切入点是否正常执行它都会在其后面执行-->
             <aop:after method="afterPrintLog" pointcut-ref="pt1"></aop:after>
 
-            <!--配置通用化切入点表达式  id属性用于指定表达式的唯一标志  expression属性用于指定表达式的内容-->
+            <!--配置通用化切入点表达式  id属性用于指定表达式的唯一标志  expression属性用于指定表达式的内容
+            此标签写在aspect标签内部 只能当前标签使用。
+            它还可以写在aop:aspect外（aspect标签之前才可以，要符合xml约束），此时就变成了所有切面可用-->
             <aop:pointcut id="pt1" expression="execution(* *..AccountServiceImpl.saveAccount())"/>
         </aop:aspect>
+
+        <aop:aspect id="logAdvice2" ref="logger">
+            <!--配置环绕通知-->
+            <aop:around method="printLog" pointcut-ref="pt1"></aop:around>
+        </aop:aspect>
     </aop:config>
+
+
 
 
 
