@@ -35,11 +35,11 @@
                 访问修饰符可以省略
 
                 返回值可以使用通配符，表示任意返回值
-                 * com_5.impl.AccountService.saveAccount()
+                 * com_5.impl.AccountServiceImpl.saveAccount()
                 包名可以使用通配符，表示任意包。不过有几级包就需要写几个*.
-                * *.*.AccountService.saveAccount()
+                * *.*.AccountServiceImpl.saveAccount()
                 包名可以使用..  ，表示当前包及其子包
-                * *..AccountService.saveAccount()
+                * *..AccountServiceImpl.saveAccount()
                 类名和方法名都可以使用*进行通配
                 * *..*.*()
                 参数列表：

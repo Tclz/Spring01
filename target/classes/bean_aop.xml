@@ -35,11 +35,11 @@
                 访问修饰符可以省略
 
                 返回值可以使用通配符，表示任意返回值
-                 * com_5.impl.AccountService.saveAccount()
+                 * com_5.impl.AccountServiceImpl.saveAccount()
                 包名可以使用通配符，表示任意包。不过有几级包就需要写几个*.
-                * *.*.AccountService.saveAccount()
+                * *.*.AccountServiceImpl.saveAccount()
                 包名可以使用..  ，表示当前包及其子包
-                * *..AccountService.saveAccount()
+                * *..AccountServiceImpl.saveAccount()
                 类名和方法名都可以使用*进行通配
                 * *..*.*()
                 参数列表：
@@ -48,7 +48,12 @@
                         引用类型写报名.类名的方式： e.g java.lang.String
 
                     可以使用通配符表示任意类型，但是必须要有参数
+                 可以使用..表示有无参数均可，有参数可以是任意类型
                  全通配写法：* *..*.*(..)
+
+                 实际开发中切入点表达式的通常写法：
+                    切到业务层实现类下的所有方法
+                    * com_5.impl.*.*(..)
 
 
     -->

@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--配置需要被增强的Service对象-->
+    <bean id="accountService" class="com_6.impl.AccountServiceImpl"></bean>
+
+    <!-- 配置Logger类-->
+    <bean id="logger" class="com_6.utils.Logger"></bean>
+
+    <!-- 配置AOP-->
+    <aop:config>
+        <!--配置切面-->
+        <aop:aspect id="logAdvice" ref="logger">
+            <!--配置前置通知  在切入点方法执行前执行-->
+            <aop:before method="beforePrintLog" pointcut="execution(* *..AccountServiceImpl.saveAccount())"></aop:before>
+            <!--配置后置通知  在切入点方法正常执行之后执行。它和异常通知两者最多执行一个-->
+            <aop:after-returning method="afterReturningPrintLog" pointcut="execution(* *..AccountServiceImpl.saveAccount())"></aop:after-returning>
+            <!--配置异常通知  在切入点方法执行产生异常之后执行-->
+            <aop:after-throwing method="afterThrowingPrintLog" pointcut="execution(* *..AccountServiceImpl.saveAccount())"></aop:after-throwing>
+            <!--配置最终通知  无论切入点是否正常执行它都会在其后面执行-->
+            <aop:after method="afterPrintLog" pointcut="execution(* *..AccountServiceImpl.saveAccount())"></aop:after>
+        </aop:aspect>
+    </aop:config>
+
+
+
+</beans>
