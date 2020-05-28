@@ -21,8 +21,7 @@ public class BeanFactory {
         this.txManager = txManager;
     }
 
-    // final关键字添加
-    public final void setAccountService(IAccountService accountService) {
+    public  void setAccountService(IAccountService accountService) {
         this.accountService = accountService;
     }
     /**
@@ -34,28 +33,29 @@ public class BeanFactory {
                 /**
                  * 添加事务的支持
                  */
+                //// AOP 四种通知类型
                 new InvocationHandler() {
-                    @Override
+                    @Override   // 整个invoke方法的执行就是环绕通知
                     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                         Object rtValue = null;
                         try {
-                            // 1.开启事务
+                            // 1.开启事务   // 前置通知
                             txManager.beginTransaction();
                             //2.执行操作
-                            rtValue = method.invoke(accountService,args);
+                            rtValue = method.invoke(accountService,args);  // 在环绕通知中有明确的切入点方法调用
                             //3.提交事务
-                            txManager.commit();
+                            txManager.commit();  // 后置通知
                             //4.返回结果
                             return rtValue;
 
                         }catch (Exception e){
                             // 5.回滚操作
-                            txManager.rollback();
+                            txManager.rollback(); // 异常通知
                             throw new RuntimeException(e);
 
                         }finally {
                             // 6.释放连接
-                            txManager.release();
+                            txManager.release();  // 最终通知
                         }
 
 
