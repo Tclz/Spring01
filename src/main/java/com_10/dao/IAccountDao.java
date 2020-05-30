@@ -1,6 +1,6 @@
-package com_8.dao;
+package com_10.dao;
 
-import com_8.domain.Account;
+import com_10.domain.Account;
 
 import java.util.List;
 
@@ -16,5 +16,7 @@ public interface IAccountDao {
     /**
      * 更新账户
      */
+    void updateAccount(Account account);
+
 
 }

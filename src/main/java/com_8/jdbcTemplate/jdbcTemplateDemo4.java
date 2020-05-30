@@ -16,8 +16,7 @@ public class jdbcTemplateDemo4 {
         Account account = accountDao.findAccountById(5);
         System.out.println(account);
 
-        account.setName("qqqq");
-        accountDao.updateAccount(account);
+
 
 
     }

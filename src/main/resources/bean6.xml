@@ -20,8 +20,6 @@
 
     </bean>
 
-
-
     <!-- 配置Service-->
     <bean id="accountService" class="com_4.service.impl.AccountServiceImpl_new">
         <!-- 注入dao -->

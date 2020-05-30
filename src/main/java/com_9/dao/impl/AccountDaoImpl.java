@@ -1,7 +1,7 @@
-package com_8.dao.impl;
+package com_9.dao.impl;
 
-import com_8.dao.IAccountDao;
 import com_8.domain.Account;
+import com_9.dao.IAccountDao;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -19,13 +19,13 @@ public class AccountDaoImpl implements IAccountDao {
 
     @Override
     public Account findAccountById(Integer accountId) {
-        List<Account> accountList = jdbcTemplate.query("select * from account where id = ? ",new BeanPropertyRowMapper<Account>(Account.class),accountId);
+        List<Account> accountList = jdbcTemplate.query("select * from account where id = ? ",new BeanPropertyRowMapper<Account>(Account.class),5);
         return accountList.isEmpty()?null:accountList.get(0);
     }
 
     @Override
     public Account findAccountByName(String name) {
-        List<Account>accountList = jdbcTemplate.query("select * from account where name = ? ",new BeanPropertyRowMapper<Account>(Account.class),name);
+        List<Account>accountList = jdbcTemplate.query("select * from account where name = ? ",new BeanPropertyRowMapper<Account>(Account.class),"libai");
         if(accountList.isEmpty()){
             return  null;
         }
@@ -36,4 +36,9 @@ public class AccountDaoImpl implements IAccountDao {
         return accountList.get(0);
     }
 
+    @Override
+    public void updateAccount(Account account) {
+        jdbcTemplate.update("update account set name = ? where id = ?",account.getName(),account.getId());
+
+    }
 }
