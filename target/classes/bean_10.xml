@@ -11,8 +11,8 @@
         http://www.springframework.org/schema/aop
         https://www.springframework.org/schema/aop/spring-aop.xsd">
 
-
-    <!-- 配置Service-->
+    <!--spring中基于XML的声明式事务控制-->
+        <!-- 配置Service-->
     <bean id="accountService" class="com_10.service.impl.AccountServiceImpl">
         <property name="accountDao" ref="accountDao"></property>
     </bean>
@@ -57,8 +57,9 @@
             no-rollback-for:用于指定一个异常，单产生该异常时，事务不回滚，产生其他异常时，事务回滚。没有默认值，表示任何异常都回滚。
             -->
         <tx:attributes>
+            <!-- 第二个只能部分匹配，优先级比第一个要高-->
             <tx:method name="*" propagation="REQUIRED" read-only="false"></tx:method>
-            <tx:method name="find" propagation="SUPPORTS" read-only="true"></tx:method>
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"></tx:method>
         </tx:attributes>
 
     </tx:advice>
